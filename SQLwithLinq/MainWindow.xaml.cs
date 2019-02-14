@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Configuration;
+
 namespace SQLwithLinq
 {
     /// <summary>
@@ -20,9 +22,14 @@ namespace SQLwithLinq
     /// </summary>
     public partial class MainWindow : Window
     {
+        LinqToSqlDataClassesDataContext dataContext;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["SQLwithLinq.Properties.Settings.PremSqlDBConnectionString"].ConnectionString;
+            dataContext = new LinqToSqlDataClassesDataContext(connectionString); 
         }
     }
 }
