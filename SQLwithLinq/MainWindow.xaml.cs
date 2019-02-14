@@ -36,6 +36,7 @@ namespace SQLwithLinq
             //InsertLectures();
             //InsertStudentLectureAssociations();
             //GetUniversityOfTony();
+            //GetLecturesForTony();
         }
 
         public void InsertUniversities()
@@ -137,6 +138,16 @@ namespace SQLwithLinq
             universities.Add(TonyUniversity);
 
             mainDataGrid.ItemsSource = universities;
+        }
+
+        public void GetLecturesForTony()
+        {
+
+            Student Tony = dataContext.Students.First(st => st.Name.Equals("Tony"));
+
+            var TonyLecture = from sl in Tony.StudentLectures select sl.Lecture;
+
+            mainDataGrid.ItemsSource = TonyLecture;
         }
     }
 }
